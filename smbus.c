@@ -7,11 +7,9 @@
 static VALUE read_byte_data(VALUE self, VALUE fd, VALUE cmd)
 {
 	int ret = 0;
+
 	Check_Type(fd, T_FIXNUM);
 	Check_Type(cmd, T_FIXNUM);
-	FIX2INT(fd);
-	FIX2INT(cmd);
-	/*char* hello = "HELLO RUBY from C";*/
 	ret = i2c_smbus_read_byte_data(FIX2INT(fd), FIX2INT(cmd));
 	if (ret < 0) {
 		rb_raise(rb_eIOError, "SMBUS Read operation failed!");
@@ -24,12 +22,10 @@ static VALUE read_byte_data(VALUE self, VALUE fd, VALUE cmd)
 static VALUE write_byte_data(VALUE self, VALUE fd, VALUE reg, VALUE bit)
 {	
 	int ret = 0;
+
 	Check_Type(fd, T_FIXNUM);
 	Check_Type(reg, T_FIXNUM);
 	Check_Type(bit, T_FIXNUM);
-	FIX2INT(reg);
-	FIX2INT(bit);
-	/*char* hello = "HELLO RUBY from C2";*/
 	ret = i2c_smbus_write_byte_data(FIX2INT(fd), FIX2INT(reg), FIX2INT(bit));
 	if (!ret) {
 		rb_raise(rb_eIOError, "SMBUS Write operation failed!");

@@ -1,0 +1,6 @@
+*.log
+*.o
+*.so
+*.a
+*.sitearchdir.time
+Makefile
